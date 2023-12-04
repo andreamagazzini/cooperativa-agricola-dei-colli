@@ -17,7 +17,7 @@ const NAVBAR_ITEMS = [{
 
 const MobileNavbar = () => {
   return (
-    <div className="lg:hidden p-5 flex justify-end z-10">
+    <div className="fixed w-screen top-0 left-0 lg:hidden p-5 flex justify-end z-10">
       <NavbarItem items={NAVBAR_ITEMS}>
         MENU
       </NavbarItem>

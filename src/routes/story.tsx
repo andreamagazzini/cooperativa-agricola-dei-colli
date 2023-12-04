@@ -19,7 +19,7 @@ export function Component() {
   return (
     <div className="w-screen h-screen flex flex-col bg-home bg-no-repeat bg-cover">
       <Navbar />
-      <div className="flex justify-center overflow-hidden">
+      <div className="h-full pt-20 flex justify-center overflow-hidden">
         <PageFlip
           className={''}
           style={{}}
