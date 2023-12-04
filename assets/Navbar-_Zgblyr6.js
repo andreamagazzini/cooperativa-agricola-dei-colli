@@ -1,4 +1,4 @@
-import{r as s,R as S,e as Re,u as Le,j as w,g as Ve,b as We,d as Xe}from"./index-_wRQ91OJ.js";const Ye=[{label:"FARRO",description:`Il farro è uno dei piu antichi cereali, la cui coltivazione risale al 7000 A.C., è stato per secoli la base alimentare di intere popolazioni asiatiche e mediterranee. 
+import{r as s,R as S,e as Re,u as Le,j as w,g as Ve,b as We,d as Xe}from"./index-NQ28QibK.js";const Ye=[{label:"FARRO",description:`Il farro è uno dei piu antichi cereali, la cui coltivazione risale al 7000 A.C., è stato per secoli la base alimentare di intere popolazioni asiatiche e mediterranee. 
   Fu introdotto in Italia dagli antichi Greci; i legionari romani erano soliti consumare il puls, una sorta di polenta preparata da sfarinati di farro abbrustoliti, il farro insieme al sale era la paga degli stessi legionari. 
   Il farro è ricco di vitamine, sali minerali e di amido ed è stato riscoperto per le eccellenti proprietà dietetiche e per cheè le sue fibre svolgono un'azione benefica. 
   Il suo uso ideale in cucina è per la preparazione di zuppe, come la minestra di farro, torte e farro freddo; si accosta molto bene ai legumi. 
