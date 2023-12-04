@@ -5,7 +5,8 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "typeRoots" : ["wwwroot/js/DefinitelyTyped"],
+    "types": ["vite-plugin-remix-router/client"],
+    "typeRoots" : ["./node_modules", "wwwroot/js/DefinitelyTyped"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
