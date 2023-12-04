@@ -30,9 +30,10 @@ export function Component() {
   return (
     <div className="fixed w-screen h-screen flex flex-col bg-home bg-no-repeat bg-cover">
       <Navbar />
-      <div className="h-full pt-40 pb-20 flex flex-col lg:flex-row justify-center content-center items-center gap-10 overflow-auto">
+      <div className="h-full py-20 mt-5 flex flex-col lg:flex-row lg:justify-center items-center gap-10 overflow-auto">
         {menuItems.map(({ img, label, url, onHoverImg }) => (
           <CircleImage
+            key={label}
             src={IMAGES[img]}
             onHoverSrc={IMAGES[onHoverImg]}
             label={label}

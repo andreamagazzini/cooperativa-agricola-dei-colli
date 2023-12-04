@@ -14,6 +14,7 @@ const CircleImage: FC<Props> = ({ label, src, onHoverSrc, onClick }) => {
     <div
       className="flex flex-col cursor-pointer"
       onClick={onClick}
+      onTouchStart={(e) => {e.preventDefault(); setCurrentSrc(onHoverSrc);}}
       onMouseOver={() => setCurrentSrc(onHoverSrc)}
       onMouseLeave={() => setCurrentSrc(src)}
     >
