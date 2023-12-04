@@ -1,0 +1,7 @@
+export const STORY = 
+`La cooperativa agricola dei colli è situata a Piazza al Serchio in alta Garfagnana (provincia di Lucca), circondata dalle catene montuese delle Alpi Apuane ad ovest e dell' Appennino Tosco-Emiliano ad est; confinante a nord con la Lunigiana, a ovest con la Versilia e la provincia di Massa Carrara, a est con l' Emilia (province di Modena e Reggio Emilia) e a sud con la Media Valle del Serchio.
+La cooperativa agricola a conduzione familiare, nasce nel 1980, raggruppando le aziende del territorio sia per la produzione di cereali antichi, sia per l' allevamento di bovini e suini allo stato semibrado.
+Negli anni è stato affiancato un impianto di trasformazione del farro perseguendo un progetto di filiera nel quale tutte le fasi per arrivare al prodotto finito vengono effettuate all' interno dell' azienda stessa. 
+In modo particolare, queste comprendono la fase di trasformazione del farro grezzo, raccolto nei nostri campi, in un prodotto finito pronto al consumo alimentare. 
+La quota di prodotto residuale da tale lavorazione (circa il 50% del peso iniziale), viene reimpiegata per l' alimentazione dei bovini e dei suini allevati in azienda.
+Il letame di questi ultimi viene a sua volta riutilizzato per la concimazione naturale dei terreni nei quali si coltiva il farro stesso, andando a chiudere un ciclo virtuoso e contribuendo alla conservazione dell' equilibrio naturale locale.`
