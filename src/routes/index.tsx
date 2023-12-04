@@ -28,9 +28,9 @@ const menuItems = [
 export function Component() {
   const navigate = useNavigate()
   return (
-    <div className="w-screen h-screen text-center flex flex-col">
+    <div className="w-screen h-full lg:h-screen flex flex-col bg-home bg-no-repeat bg-cover">
       <Navbar />
-      <div className="flex flex-row justify-center content-center items-center gap-10 bg-home bg-no-repeat bg-cover h-screen">
+      <div className="flex flex-col lg:flex-row justify-center content-center items-center gap-10 h-screen pb-20">
         {menuItems.map(({ img, label, url, onHoverImg }) => (
           <CircleImage
             src={IMAGES[img]}

@@ -1,11 +1,10 @@
-import { getProductsUrl } from '@/router'
 import { Menu, Transition } from '@headlessui/react'
 import { FC, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
   children: string
-  items?: { label: string }[]
+  items?: { label: string, url: string }[]
   onClick?: () => void
 }
 
@@ -31,14 +30,14 @@ const NavbarItem: FC<Props> = ({ children, items, onClick }) => {
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
             <div className="px-1 py-1 ">
-              {items?.map(({ label }, index) => (
-                <Menu.Item>
+              {items?.map(({ label, url }) => (
+                <Menu.Item key={label}>
                   {({ active }) => (
                     <button
                       className={`${
                         active ? 'bg-green-500 text-white' : 'text-gray-900'
                       } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                      onClick={() => navigate(getProductsUrl(String(index)))}
+                      onClick={() => navigate(url)}
                     >
                       {label}
                     </button>

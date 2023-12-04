@@ -9,16 +9,16 @@ export function Component() {
   const navigate = useNavigate()
 
   return (
-    <div className="w-screen h-screen text-center flex flex-col">
+    <div className="w-screen h-screen flex flex-col bg-home bg-no-repeat bg-cover">
       <Navbar />
-      <div className="bg-home bg-no-repeat bg-cover h-screen">
-        <div className="w-full flex flex-row h-full">
+      <div className="h-full">
+        <div className="w-full h-full flex flex-row">
           <Tab.Group
             vertical
             selectedIndex={id ? parseInt(id) : 0}
             onChange={(index) => navigate(getProductsUrl(String(index)))}
           >
-            <Tab.List className="flex flex-col w-1/4 p-2 bg-green-900/70">
+            <Tab.List className="flex flex-col w-1/3 lg:w-1/4 p-2 bg-green-900/70">
               {PRODUCTS.map(({ label }) => (
                 <Tab
                   key={label}
@@ -34,7 +34,7 @@ export function Component() {
                 </Tab>
               ))}
             </Tab.List>
-            <Tab.Panels className="w-3/4">
+            <Tab.Panels className="w2/3 lg:w-3/4">
               {PRODUCTS.map(({ label, description }) => (
                 <Tab.Panel
                   key={label}

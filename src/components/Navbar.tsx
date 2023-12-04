@@ -2,12 +2,14 @@ import { PRODUCTS } from '@/constants/products'
 import NavbarItem from './NavbarItem'
 import { useNavigate } from 'react-router-dom'
 import { getRootUrl, getStoryUrl } from '@/router'
+import MobileNavbar from './MobileNavbar'
 
 const Navbar = () => {
   const navigate = useNavigate()
 
   return (
-    <div className="flex flex-row justify-between">
+    <>
+    <div className="hidden lg:flex flex-row justify-between">
       <h1 className="text-base p-5 self-center text-bold text-green-900">
         COOPERATIVA AGRICOLA DEI COLLI
       </h1>
@@ -20,6 +22,8 @@ const Navbar = () => {
         <NavbarItem>CONTATTI</NavbarItem>
       </div>
     </div>
+    <MobileNavbar />
+    </>
   )
 }
 

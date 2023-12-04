@@ -18,11 +18,11 @@ const CircleImage: FC<Props> = ({ label, src, onHoverSrc, onClick }) => {
       onMouseLeave={() => setCurrentSrc(src)}
     >
       <img
-        className="object-cover h-72 w-72 rounded-full border-white border-8"
+        className="object-cover h-60 w-60 lg:h-72 lg:w-72 rounded-full border-white border-8"
         src={currentSrc}
         alt="image"
       />
-      <h2 className="text-green-900 font-semibold ring-4 ring-white ring-offset-2 ring-offset-green-900 bg-white -mt-5 rounded-xl p-2 hover:bg-green-900 hover:text-white">
+      <h2 className="text-green-900 text-center font-semibold ring-4 ring-white ring-offset-2 ring-offset-green-900 bg-white -mt-5 rounded-xl p-2 hover:bg-green-900 hover:text-white">
         {label}
       </h2>
     </div>
