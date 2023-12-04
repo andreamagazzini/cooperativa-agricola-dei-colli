@@ -10,11 +10,21 @@ interface Props {
 const CircleImage: FC<Props> = ({ label, src, onHoverSrc, onClick }) => {
   const [currentSrc, setCurrentSrc] = useState(src)
 
+  const switchImg = (e: React.TouchEvent) => {
+    e.preventDefault();
+
+    if (currentSrc === onHoverSrc) {
+      setCurrentSrc(src);
+    } else {
+      setCurrentSrc(onHoverSrc);
+    }
+  }
+
   return (
     <div
       className="flex flex-col cursor-pointer"
       onClick={onClick}
-      onTouchStart={(e) => {e.preventDefault(); setCurrentSrc(onHoverSrc);}}
+      onTouchStart={switchImg}
       onMouseOver={() => setCurrentSrc(onHoverSrc)}
       onMouseLeave={() => setCurrentSrc(src)}
     >

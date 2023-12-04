@@ -1,7 +1,7 @@
 import { PRODUCTS } from '@/constants/products'
 import NavbarItem from './NavbarItem'
 import { useNavigate } from 'react-router-dom'
-import { getRootUrl, getStoryUrl } from '@/router'
+import { getContactsUrl, getRootUrl, getStoryUrl } from '@/router'
 import MobileNavbar from './MobileNavbar'
 
 const Navbar = () => {
@@ -20,11 +20,12 @@ const Navbar = () => {
             <NavbarItem onClick={() => navigate(getStoryUrl())}>
               CHI SIAMO
             </NavbarItem>
-            <NavbarItem>CONTATTI</NavbarItem>
+            <NavbarItem onClick={() => navigate(getContactsUrl())}>CONTATTI</NavbarItem>
           </div>
         </div>
       </div>
       <MobileNavbar />
+      <div className='w-screen p-10' />
     </>
   )
 }

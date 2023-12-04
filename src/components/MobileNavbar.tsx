@@ -1,4 +1,4 @@
-import { getProductsUrl, getRootUrl, getStoryUrl } from "@/router"
+import { getContactsUrl, getProductsUrl, getRootUrl, getStoryUrl } from "@/router"
 import NavbarItem from "./NavbarItem"
 
 const NAVBAR_ITEMS = [{
@@ -12,7 +12,7 @@ const NAVBAR_ITEMS = [{
   url: getStoryUrl() 
 }, {
   label: "CONTATTI",
-  url: ""
+  url: getContactsUrl()
 }]
 
 const MobileNavbar = () => {

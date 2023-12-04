@@ -9,3 +9,4 @@ export const router = createBrowserRouter(routes, {
 export const getRootUrl = () => '/'
 export const getProductsUrl = (id?: string) => `/products/${id || 0}`
 export const getStoryUrl = () => '/story'
+export const getContactsUrl = () => '/contacts'
