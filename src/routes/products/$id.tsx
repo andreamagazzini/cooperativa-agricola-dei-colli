@@ -1,8 +1,8 @@
-import Navbar from "@/components/Navbar";
-import { PRODUCTS } from "@/constants/products";
-import { getProductsUrl } from "@/router";
-import { Tab } from "@headlessui/react";
-import { useNavigate, useParams } from "react-router-dom";
+import Navbar from '@/components/Navbar'
+import { PRODUCTS } from '@/constants/products'
+import { getProductsUrl } from '@/router'
+import { Tab } from '@headlessui/react'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export function Component() {
   const { id } = useParams()
@@ -13,15 +13,21 @@ export function Component() {
       <Navbar />
       <div className="bg-home bg-no-repeat bg-cover h-screen">
         <div className="w-full flex flex-row h-full">
-          <Tab.Group vertical selectedIndex={id ? parseInt(id) : 0} onChange={(index) => navigate(getProductsUrl(String(index)))}>
+          <Tab.Group
+            vertical
+            selectedIndex={id ? parseInt(id) : 0}
+            onChange={(index) => navigate(getProductsUrl(String(index)))}
+          >
             <Tab.List className="flex flex-col w-1/4 p-2 bg-green-900/70">
               {PRODUCTS.map(({ label }) => (
                 <Tab
                   key={label}
                   className={({ selected }) =>
-                    `w-full p-5 text-sm font-medium text-left leading-5 ring-white/60 ring-offset-2 focus:outline-none ${selected ?
-                      'bg-white text-green-700 shadow'
-                      : 'text-green-100 hover:bg-white/[0.12] hover:text-white'}`
+                    `w-full p-5 text-sm font-medium text-left leading-5 ring-white/60 ring-offset-2 focus:outline-none ${
+                      selected
+                        ? 'bg-white text-green-700 shadow'
+                        : 'text-green-100 hover:bg-white/[0.12] hover:text-white'
+                    }`
                   }
                 >
                   {label}
@@ -32,7 +38,9 @@ export function Component() {
               {PRODUCTS.map(({ label, description }) => (
                 <Tab.Panel
                   key={label}
-                  className={'bg-white/40 p-3 ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'}
+                  className={
+                    'bg-white/40 p-3 ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'
+                  }
                 >
                   {description}
                 </Tab.Panel>

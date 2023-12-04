@@ -1,7 +1,7 @@
-import { PRODUCTS } from "@/constants/products"
-import NavbarItem from "./NavbarItem"
-import { useNavigate } from "react-router-dom"
-import { getRootUrl, getStoryUrl } from "@/router"
+import { PRODUCTS } from '@/constants/products'
+import NavbarItem from './NavbarItem'
+import { useNavigate } from 'react-router-dom'
+import { getRootUrl, getStoryUrl } from '@/router'
 
 const Navbar = () => {
   const navigate = useNavigate()
@@ -14,7 +14,9 @@ const Navbar = () => {
       <div className="flex flex-row justify-end p-5 z-10">
         <NavbarItem onClick={() => navigate(getRootUrl())}>HOME</NavbarItem>
         <NavbarItem items={PRODUCTS}>PRODOTTI</NavbarItem>
-        <NavbarItem onClick={() => navigate(getStoryUrl())}>CHI SIAMO</NavbarItem>
+        <NavbarItem onClick={() => navigate(getStoryUrl())}>
+          CHI SIAMO
+        </NavbarItem>
         <NavbarItem>CONTATTI</NavbarItem>
       </div>
     </div>

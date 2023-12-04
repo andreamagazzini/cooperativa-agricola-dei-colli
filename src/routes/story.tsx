@@ -1,6 +1,6 @@
-import Navbar from "@/components/Navbar";
-import { STORY } from "@/constants/story";
-import PageFlip from "react-pageflip";
+import Navbar from '@/components/Navbar'
+import { STORY } from '@/constants/story'
+import PageFlip from 'react-pageflip'
 
 export function Component() {
   const pages = STORY.split(/\n/)
@@ -11,10 +11,10 @@ export function Component() {
       <div className="bg-home bg-no-repeat bg-cover h-screen">
         <div className="mt-20 flex justify-center">
           <PageFlip
-            className={""}
+            className={''}
             style={{}}
             startPage={0}
-            size={"fixed"}
+            size={'fixed'}
             width={400}
             height={600}
             minWidth={0}
@@ -35,28 +35,21 @@ export function Component() {
             showPageCorners
             disableFlipByClick={false}
           >
-            {
-              pages.map((p, index) => (
-                <div className="text-left bg-white px-10 py-20 cursor-pointer h-full">
-                  <div className="h-[450px]">{p}</div>
-                  {
-                    (index !== pages.length - 1 && index !== 0) ?
-                      index % 2 ?
-                        <div className={'text-right'}>{'Prossima pagina -->'}</div>
-                        :
-                        <div>{'<-- Pagina precedente'}</div>
-                      :
-                      <></>
-                  }
-                </div>
-              ))
-            }
-            {
-              pages.length % 2 ?
-                <div className="bg-white"></div>
-                :
-                <></>
-            }
+            {pages.map((p, index) => (
+              <div className="text-left bg-white px-10 py-20 cursor-pointer h-full">
+                <div className="h-[450px]">{p}</div>
+                {index !== pages.length - 1 && index !== 0 ? (
+                  index % 2 ? (
+                    <div className={'text-right'}>{'Prossima pagina -->'}</div>
+                  ) : (
+                    <div>{'<-- Pagina precedente'}</div>
+                  )
+                ) : (
+                  <></>
+                )}
+              </div>
+            ))}
+            {pages.length % 2 ? <div className="bg-white"></div> : <></>}
           </PageFlip>
         </div>
       </div>

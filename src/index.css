@@ -57,7 +57,7 @@ button:focus-visible {
 }
 
 .bg-home {
-  background-image: url("./images/mountain.jpg");
+  background-image: url('./images/mountain.jpg');
 }
 
 @media (prefers-color-scheme: light) {

@@ -4,16 +4,12 @@ import { FC, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
-  children: string,
-  items?: { label: string }[],
+  children: string
+  items?: { label: string }[]
   onClick?: () => void
 }
 
-const NavbarItem: FC<Props> = ({
-  children,
-  items,
-  onClick
-}) => {
+const NavbarItem: FC<Props> = ({ children, items, onClick }) => {
   const navigate = useNavigate()
 
   return (
@@ -23,8 +19,7 @@ const NavbarItem: FC<Props> = ({
           {children}
         </Menu.Button>
       </div>
-      {
-        items &&
+      {items && (
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -36,25 +31,24 @@ const NavbarItem: FC<Props> = ({
         >
           <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
             <div className="px-1 py-1 ">
-              {
-                items?.map(({ label }, index) => (
-                  <Menu.Item>
-                    {({ active }) => (
-                      <button
-                        className={`${active ? 'bg-green-500 text-white' : 'text-gray-900'
-                          } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                        onClick={() => navigate(getProductsUrl(String(index)))}
-                      >
-                        {label}
-                      </button>
-                    )}
-                  </Menu.Item>
-                ))
-              }
+              {items?.map(({ label }, index) => (
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? 'bg-green-500 text-white' : 'text-gray-900'
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                      onClick={() => navigate(getProductsUrl(String(index)))}
+                    >
+                      {label}
+                    </button>
+                  )}
+                </Menu.Item>
+              ))}
             </div>
           </Menu.Items>
         </Transition>
-      }
+      )}
     </Menu>
   )
 }
