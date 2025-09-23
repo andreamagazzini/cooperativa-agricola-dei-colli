@@ -1,11 +1,15 @@
 import Navbar from "@/components/Navbar";
+import SkipLink from "@/components/SkipLink";
 import { Outlet } from "react-router-dom";
 
 export function Component() {
   return (
-    <div className="w-screen h-screen flex flex-col bg-home bg-no-repeat bg-cover">
+    <div className="min-h-screen flex flex-col bg-home">
+      <SkipLink />
       <Navbar />
-      <Outlet />
+      <main id="main-content" className="flex-1">
+        <Outlet />
+      </main>
     </div>
   )
 }
