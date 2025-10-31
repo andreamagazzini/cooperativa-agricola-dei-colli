@@ -29,13 +29,15 @@ export default function ProductsPage() {
     <div className="min-h-screen flex flex-col lg:flex-row">
       <Tab.Group
         selectedIndex={selectedIndex}
-        onChange={(index) => router.push(`/products?id=${index}` as any)}
+        onChange={(index) => {
+          router.push(`/products?id=${index}`)
+        }}
       >
         {/* Sidebar */}
         <aside className="w-full lg:w-1/3 xl:w-1/4 bg-primary-900/90 backdrop-blur-sm lg:fixed lg:left-0 lg:top-20 lg:h-[calc(100vh-5rem)] lg:overflow-y-auto" aria-label="Lista prodotti">
           <div className="p-6">
             <h2 className="text-2xl font-bold text-white mb-6">I Nostri Prodotti</h2>
-            <Tab.List className="space-y-2" role="tablist" aria-label="Prodotti disponibili">
+            <Tab.List className="space-y-2">
               {PRODUCTS.map(({ label }, index) => (
                 <Tab
                   key={label}
@@ -46,10 +48,6 @@ export default function ProductsPage() {
                         : 'text-white hover:bg-white/20 hover:text-white'
                     }`
                   }
-                  role="tab"
-                  aria-selected={selectedIndex === index}
-                  aria-controls={`panel-${index}`}
-                  id={`tab-${index}`}
                 >
                   <div className="flex items-center">
                     <div className={`w-3 h-3 rounded-full mr-3 ${
@@ -67,14 +65,10 @@ export default function ProductsPage() {
         <div className="flex-1 lg:ml-[33.333333%] xl:ml-[25%] bg-white/95 backdrop-blur-sm min-h-screen">
           <div className="h-full overflow-y-auto">
             <Tab.Panels>
-              {PRODUCTS.map(({ label, description }, index) => (
+              {PRODUCTS.map(({ label, description }) => (
                 <Tab.Panel
                   key={label}
                   className="p-8 lg:p-12 focus:outline-none"
-                  role="tabpanel"
-                  id={`panel-${index}`}
-                  aria-labelledby={`tab-${index}`}
-                  tabIndex={selectedIndex === index ? 0 : -1}
                 >
                   <div className="max-w-4xl mx-auto">
                     <header className="mb-8">

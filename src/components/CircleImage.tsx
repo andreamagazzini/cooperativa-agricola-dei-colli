@@ -26,17 +26,6 @@ const CircleImage: FC<Props> = ({ label, src, onHoverSrc, onClick, className = '
     setCurrentSrc(src)
   }
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    e.preventDefault()
-    if (currentSrc === onHoverSrc) {
-      setCurrentSrc(src)
-      setIsHovered(false)
-    } else {
-      setCurrentSrc(onHoverSrc)
-      setIsHovered(true)
-    }
-  }
-
   return (
     <Touchable
       onTap={onClick}

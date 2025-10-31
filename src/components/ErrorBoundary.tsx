@@ -47,7 +47,7 @@ class ErrorBoundary extends Component<Props, State> {
             </h1>
             
             <p className="text-neutral-600 mb-6">
-              Ci scusiamo per l'inconveniente. Si è verificato un errore imprevisto.
+              Ci scusiamo per l&apos;inconveniente. Si è verificato un errore imprevisto.
             </p>
             
             <div className="space-y-4">
@@ -70,7 +70,7 @@ class ErrorBoundary extends Component<Props, State> {
             {process.env.NODE_ENV === 'development' && this.state.error && (
               <details className="mt-6 text-left">
                 <summary className="cursor-pointer text-sm text-neutral-500 hover:text-neutral-700">
-                  Dettagli dell'errore (solo in sviluppo)
+                  Dettagli dell&apos;errore (solo in sviluppo)
                 </summary>
                 <pre className="mt-2 text-xs text-red-600 bg-red-50 p-3 rounded overflow-auto">
                   {this.state.error.stack}

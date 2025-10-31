@@ -14,11 +14,13 @@ export function usePerformanceMonitor(componentName: string) {
     if (!isMonitoring) return
 
     const startTime = performance.now()
-    const startMemory = (performance as any).memory?.usedJSHeapSize
+    // memory is not in the standard Performance type but may be available in Chrome
+    const startMemory = (performance as { memory?: { usedJSHeapSize?: number } }).memory?.usedJSHeapSize
 
     const measurePerformance = () => {
       const endTime = performance.now()
-      const endMemory = (performance as any).memory?.usedJSHeapSize
+      // memory is not in the standard Performance type but may be available in Chrome
+      const endMemory = (performance as { memory?: { usedJSHeapSize?: number } }).memory?.usedJSHeapSize
       
       const loadTime = endTime - startTime
       const renderTime = performance.now() - startTime

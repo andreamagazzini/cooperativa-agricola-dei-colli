@@ -9,12 +9,12 @@ export interface ImageOptimizationOptions {
 
 export function optimizeImageUrl(
   originalUrl: string, 
-  options: ImageOptimizationOptions = {}
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _options: ImageOptimizationOptions = {}
 ): string {
-  const { width, height, quality = 80, format = 'webp' } = options
-  
   // For now, return the original URL since we don't have a CDN
   // In production, you would integrate with a service like Cloudinary, ImageKit, or similar
+  // Options (width, height, quality, format) are available for future CDN integration
   return originalUrl
 }
 

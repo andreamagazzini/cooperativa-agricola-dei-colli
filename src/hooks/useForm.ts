@@ -12,12 +12,12 @@ interface UseFormReturn<T> {
   isSubmitting: boolean
   handleChange: (name: keyof T) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void
   handleSubmit: (e: React.FormEvent) => Promise<void>
-  setValue: (name: keyof T, value: any) => void
+  setValue: <K extends keyof T>(name: K, value: T[K]) => void
   setError: (name: keyof T, error: string) => void
   reset: () => void
 }
 
-export function useForm<T extends Record<string, any>>({
+export function useForm<T extends Record<string, unknown>>({
   initialValues,
   onSubmit,
   validate
@@ -63,7 +63,7 @@ export function useForm<T extends Record<string, any>>({
     }
   }, [values, onSubmit, validate, isSubmitting])
 
-  const setValue = useCallback((name: keyof T, value: any) => {
+  const setValue = useCallback(<K extends keyof T>(name: K, value: T[K]) => {
     setValues(prev => ({ ...prev, [name]: value }))
   }, [])
 

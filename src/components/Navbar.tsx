@@ -4,13 +4,12 @@ import NavbarItem from './NavbarItem'
 import MobileNavbar from './MobileNavbar'
 import LanguageSwitcher from './LanguageSwitcher'
 import { useScroll } from '@/hooks'
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 
 const Navbar = () => {
   const { isScrolled } = useScroll()
   const t = useTranslations('nav')
-  const locale = useLocale()
 
   return (
     <>

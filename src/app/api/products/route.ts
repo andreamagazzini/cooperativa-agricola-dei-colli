@@ -1,18 +1,37 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 import Airtable from 'airtable'
 
-// Initialize Airtable
-const base = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
-}).base(process.env.AIRTABLE_BASE_ID || '')
+const getBase = () => {
+  if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+    return null
+  }
+  return new Airtable({
+    apiKey: process.env.AIRTABLE_API_KEY,
+  }).base(process.env.AIRTABLE_BASE_ID)
+}
 
-export async function GET(request: NextRequest) {
+interface AirtableFields {
+  Name?: string
+  Label?: string
+  Description?: string
+  Image?: Array<{ url: string }>
+  Category?: string
+  Price?: number
+  'In Stock'?: boolean
+  Order?: number
+  Published?: number
+}
+
+export async function GET() {
   try {
-    // Validate environment variables
-    if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
-      console.error('Missing Airtable credentials')
+    const base = getBase()
+    if (!base) {
       return NextResponse.json(
-        { success: false, error: 'Server configuration error' },
+        {
+          success: false,
+          error: 'Airtable configuration missing',
+          data: [],
+        },
         { status: 500 }
       )
     }
@@ -31,7 +50,7 @@ export async function GET(request: NextRequest) {
 
     // Transform Airtable records to your Product format
     const products = records.map((record) => {
-      const fields = record.fields as any
+      const fields = record.fields as AirtableFields
       
       return {
         id: record.id,
@@ -55,15 +74,16 @@ export async function GET(request: NextRequest) {
     
     return response
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('Airtable API error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     
     return NextResponse.json(
       {
         success: false,
         error: 'Failed to fetch products',
         // In production, don't include error details
-        ...(process.env.NODE_ENV === 'development' && { details: error.message }),
+        ...(process.env.NODE_ENV === 'development' && { details: errorMessage }),
       },
       { status: 500 }
     )

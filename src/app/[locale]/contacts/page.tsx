@@ -10,7 +10,9 @@ const PHONE_NUMBER = CONTACT_INFO.phone
 const FORMATTED_PHONE_NUMBER = CONTACT_INFO.formattedPhone
 const EMAIL = CONTACT_INFO.email
 
-const validateForm = (values: { name: string; email: string; message: string }, t: any) => {
+type TranslationFunction = (key: string) => string
+
+const validateForm = (values: { name: string; email: string; message: string }, t: TranslationFunction) => {
   const errors: Partial<typeof values> = {}
   
   if (!values.name.trim()) {
@@ -46,7 +48,7 @@ export default function ContactsPage() {
       email: '',
       message: ''
     },
-    onSubmit: async (_values) => {
+    onSubmit: async () => {
       // TODO: Connect to API route
       await new Promise(resolve => setTimeout(resolve, 1000))
       alert(t('formSuccess'))

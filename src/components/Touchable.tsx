@@ -85,7 +85,7 @@ const Touchable: FC<TouchableProps> = ({
     }
   }
 
-  const handleTouchMove = (e: React.TouchEvent) => {
+  const handleTouchMove = () => {
     if (disabled) return
     
     // Cancel long press if user moves finger
@@ -133,8 +133,8 @@ const Touchable: FC<TouchableProps> = ({
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseEnter={onMouseEnter}
-      onMouseLeave={(e) => {
-        handleMouseLeave(e)
+      onMouseLeave={() => {
+        handleMouseLeave()
         onMouseLeave?.()
       }}
       style={{ touchAction: 'manipulation' }} // Prevent double-tap zoom

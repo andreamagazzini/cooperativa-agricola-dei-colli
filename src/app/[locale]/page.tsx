@@ -1,13 +1,12 @@
 'use client'
 
-import { useTranslations, useLocale } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import { Link } from '@/i18n/routing'
 import CircleImage from '@/components/CircleImage'
 import { Button } from '@/components/ui'
 import { AnimatedSection, StaggeredContainer, HoverAnimation } from '@/components/animations'
 
 export default function HomePage() {
-  const locale = useLocale()
   const t = useTranslations('home')
 
   const menuItems = [

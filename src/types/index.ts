@@ -119,8 +119,8 @@ export interface AnimationConfig {
 }
 
 export interface MotionVariants {
-  hidden: Record<string, any>
-  visible: Record<string, any>
+  hidden: Record<string, unknown>
+  visible: Record<string, unknown>
 }
 
 // Performance types
@@ -146,7 +146,7 @@ export interface A11yProps {
 export interface AppError {
   code: string
   message: string
-  details?: Record<string, any>
+  details?: Record<string, unknown>
   timestamp: Date
 }
 
@@ -158,20 +158,20 @@ export interface ErrorBoundaryState {
 
 // Utility types
 export type Optional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>
-export type Required<T, K extends keyof T> = T & Required<Pick<T, K>>
+export type RequiredFields<T, K extends keyof T> = T & Required<Pick<T, K>>
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P]
 }
 
 // Event types
-export interface CustomEvent<T = any> {
+export interface CustomEvent<T = unknown> {
   type: string
   payload: T
   timestamp: Date
 }
 
 // Storage types
-export interface StorageItem<T = any> {
+export interface StorageItem<T = unknown> {
   key: string
   value: T
   expires?: Date

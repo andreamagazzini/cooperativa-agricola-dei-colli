@@ -10,7 +10,7 @@ import type { ApiResponse } from '@/types'
 // Base URL for your API
 // In development: use local serverless function
 // In production: use deployed function URL
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '/api'
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '/api'
 
 export interface AirtableProduct {
   id: string

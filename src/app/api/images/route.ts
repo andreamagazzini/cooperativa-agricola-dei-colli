@@ -1,12 +1,38 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Airtable from 'airtable'
 
-const base = new Airtable({
-  apiKey: process.env.AIRTABLE_API_KEY,
-}).base(process.env.AIRTABLE_BASE_ID || '')
+const getBase = () => {
+  if (!process.env.AIRTABLE_API_KEY || !process.env.AIRTABLE_BASE_ID) {
+    return null
+  }
+  return new Airtable({
+    apiKey: process.env.AIRTABLE_API_KEY,
+  }).base(process.env.AIRTABLE_BASE_ID)
+}
+
+interface AirtableImageFields {
+  Image?: Array<{ url: string }>
+  Alt?: string
+  Caption?: string
+  Category?: string
+  Order?: number
+  Published?: number
+}
 
 export async function GET(request: NextRequest) {
   try {
+    const base = getBase()
+    if (!base) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Airtable configuration missing',
+          data: [],
+        },
+        { status: 500 }
+      )
+    }
+
     const tableName = process.env.AIRTABLE_IMAGES_TABLE || 'Images'
     const searchParams = request.nextUrl.searchParams
     const category = searchParams.get('category')
@@ -24,7 +50,7 @@ export async function GET(request: NextRequest) {
       .all()
 
     const images = records.map((record) => {
-      const fields = record.fields as any
+      const fields = record.fields as AirtableImageFields
       const attachment = fields.Image?.[0]
       
       return {
@@ -45,14 +71,15 @@ export async function GET(request: NextRequest) {
     
     return response
 
-  } catch (error: any) {
+  } catch (error) {
     console.error('Airtable API error:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
     
     return NextResponse.json(
       {
         success: false,
         error: 'Failed to fetch images',
-        ...(process.env.NODE_ENV === 'development' && { details: error.message }),
+        ...(process.env.NODE_ENV === 'development' && { details: errorMessage }),
       },
       { status: 500 }
     )

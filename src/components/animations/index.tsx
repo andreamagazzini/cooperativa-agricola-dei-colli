@@ -17,46 +17,58 @@ const AnimatedSection: FC<AnimatedSectionProps> = ({
   direction = 'up'
 }) => {
   const getVariants = (): Variants => {
-    const baseVariants = {
-      hidden: { opacity: 0 },
-      visible: { 
-        opacity: 1,
-        transition: {
-          duration,
-          delay,
-          ease: [0.25, 0.46, 0.45, 0.94]
-        }
-      }
+    const baseTransition = {
+      duration,
+      delay,
+      ease: [0.25, 0.46, 0.45, 0.94] as const
     }
 
     switch (direction) {
       case 'up':
         return {
-          ...baseVariants,
-          hidden: { ...baseVariants.hidden, y: 60 },
-          visible: { ...baseVariants.visible, y: 0 }
+          hidden: { opacity: 0, y: 60 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: baseTransition
+          }
         }
       case 'down':
         return {
-          ...baseVariants,
-          hidden: { ...baseVariants.hidden, y: -60 },
-          visible: { ...baseVariants.visible, y: 0 }
+          hidden: { opacity: 0, y: -60 },
+          visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: baseTransition
+          }
         }
       case 'left':
         return {
-          ...baseVariants,
-          hidden: { ...baseVariants.hidden, x: 60 },
-          visible: { ...baseVariants.visible, x: 0 }
+          hidden: { opacity: 0, x: 60 },
+          visible: { 
+            opacity: 1, 
+            x: 0,
+            transition: baseTransition
+          }
         }
       case 'right':
         return {
-          ...baseVariants,
-          hidden: { ...baseVariants.hidden, x: -60 },
-          visible: { ...baseVariants.visible, x: 0 }
+          hidden: { opacity: 0, x: -60 },
+          visible: { 
+            opacity: 1, 
+            x: 0,
+            transition: baseTransition
+          }
         }
       case 'fade':
       default:
-        return baseVariants
+        return {
+          hidden: { opacity: 0 },
+          visible: { 
+            opacity: 1,
+            transition: baseTransition
+          }
+        }
     }
   }
 
@@ -102,7 +114,7 @@ const StaggeredContainer: FC<StaggeredContainerProps> = ({
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.25, 0.46, 0.45, 0.94]
+        ease: [0.25, 0.46, 0.45, 0.94] as const
       }
     }
   }
