@@ -5,6 +5,7 @@ interface BaseInputProps {
   error?: string
   helperText?: string
   className?: string
+  variant?: 'light' | 'dark'
 }
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement>, BaseInputProps {}
@@ -16,21 +17,37 @@ const Input: FC<InputProps> = ({
   error,
   helperText,
   className = '',
+  variant = 'light',
   id,
   ...props
 }) => {
   const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`
+  const isDark = variant === 'dark'
   
   const inputClasses = `w-full px-4 py-3 border rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 ${
     error 
       ? 'border-red-300 focus:border-red-500 focus:ring-red-500' 
-      : 'border-neutral-300'
+      : isDark
+        ? 'border-white/40 bg-white/15 text-white placeholder:text-white/70'
+        : 'border-neutral-300'
   } ${className}`
+
+  const labelClasses = `block text-sm font-medium ${
+    isDark ? 'text-white' : 'text-neutral-700'
+  }`
+
+  const errorClasses = `text-sm ${
+    isDark ? 'text-red-300' : 'text-red-600'
+  }`
+
+  const helperClasses = `text-sm ${
+    isDark ? 'text-white/60' : 'text-neutral-500'
+  }`
 
   return (
     <div className="space-y-2">
       {label && (
-        <label htmlFor={inputId} className="block text-sm font-medium text-neutral-700">
+        <label htmlFor={inputId} className={labelClasses}>
           {label}
           {props.required && <span className="text-red-500 ml-1">*</span>}
         </label>
@@ -43,11 +60,11 @@ const Input: FC<InputProps> = ({
       />
       
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className={errorClasses}>{error}</p>
       )}
       
       {helperText && !error && (
-        <p className="text-sm text-neutral-500">{helperText}</p>
+        <p className={helperClasses}>{helperText}</p>
       )}
     </div>
   )
@@ -58,21 +75,37 @@ const Textarea: FC<TextareaProps> = ({
   error,
   helperText,
   className = '',
+  variant = 'light',
   id,
   ...props
 }) => {
   const textareaId = id || `textarea-${Math.random().toString(36).substr(2, 9)}`
+  const isDark = variant === 'dark'
   
   const textareaClasses = `w-full px-4 py-3 border rounded-lg transition-colors duration-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none ${
     error 
       ? 'border-red-300 focus:border-red-500 focus:ring-red-500' 
-      : 'border-neutral-300'
+      : isDark
+        ? 'border-white/40 bg-white/15 text-white placeholder:text-white/70'
+        : 'border-neutral-300'
   } ${className}`
+
+  const labelClasses = `block text-sm font-medium ${
+    isDark ? 'text-white' : 'text-neutral-700'
+  }`
+
+  const errorClasses = `text-sm ${
+    isDark ? 'text-red-300' : 'text-red-600'
+  }`
+
+  const helperClasses = `text-sm ${
+    isDark ? 'text-white/60' : 'text-neutral-500'
+  }`
 
   return (
     <div className="space-y-2">
       {label && (
-        <label htmlFor={textareaId} className="block text-sm font-medium text-neutral-700">
+        <label htmlFor={textareaId} className={labelClasses}>
           {label}
           {props.required && <span className="text-red-500 ml-1">*</span>}
         </label>
@@ -85,11 +118,11 @@ const Textarea: FC<TextareaProps> = ({
       />
       
       {error && (
-        <p className="text-sm text-red-600">{error}</p>
+        <p className={errorClasses}>{error}</p>
       )}
       
       {helperText && !error && (
-        <p className="text-sm text-neutral-500">{helperText}</p>
+        <p className={helperClasses}>{helperText}</p>
       )}
     </div>
   )

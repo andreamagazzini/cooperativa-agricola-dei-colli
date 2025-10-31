@@ -1,5 +1,7 @@
+'use client'
+
 import { FC, useState } from 'react'
-import LazyImage from './LazyImage'
+import Image from 'next/image'
 import Touchable from './Touchable'
 
 interface Props {
@@ -44,13 +46,16 @@ const CircleImage: FC<Props> = ({ label, src, onHoverSrc, onClick, className = '
     >
       {/* Image Container */}
       <div className="relative">
-        <div className="relative overflow-hidden rounded-full border-4 border-white shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-105">
-          <LazyImage
+        <div className="relative overflow-hidden rounded-full border-4 border-white shadow-2xl group-hover:shadow-3xl transition-all duration-500 group-hover:scale-105 h-48 w-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72">
+          <Image
             src={currentSrc}
             alt={`${label} - Click to learn more`}
-            className={`object-cover h-48 w-48 sm:h-56 sm:w-56 lg:h-64 lg:w-64 xl:h-72 xl:w-72 transition-all duration-500 ${
+            fill
+            className={`object-cover transition-all duration-500 ${
               isHovered ? 'scale-110' : 'scale-100'
             }`}
+            sizes="(max-width: 640px) 192px, (max-width: 1024px) 224px, 256px"
+            unoptimized={currentSrc.endsWith('.gif')}
           />
           {/* Overlay */}
           <div className={`absolute inset-0 bg-gradient-to-t from-black/20 to-transparent transition-opacity duration-300 ${

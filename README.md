@@ -1,12 +1,12 @@
-# Cooperativa Agricola dei Colli - Website Redesign
+# Cooperativa Agricola dei Colli - Website
 
-A modern, responsive website for Cooperativa Agricola dei Colli, showcasing their agricultural products and services with improved UX/UI, accessibility, and performance.
+A modern, responsive Next.js website for Cooperativa Agricola dei Colli, showcasing their agricultural products and services with improved UX/UI, accessibility, and performance.
 
 ## 🚀 Live Demo
 
 The site is live at: https://andreamagazzini.github.io/cooperativa-agricola-dei-colli/
 
-## ✨ Key Improvements
+## ✨ Key Features
 
 ### 🎨 **Modern UI/UX Design**
 - **Redesigned visual hierarchy** with better typography and spacing
@@ -20,7 +20,7 @@ The site is live at: https://andreamagazzini.github.io/cooperativa-agricola-dei-
 - **Custom hooks** for form handling, scroll effects, and performance monitoring
 - **Proper TypeScript types** for better type safety
 - **Error boundaries** for graceful error handling
-- **Lazy loading** for images and components
+- **Next.js Image optimization** for better performance
 
 ### ♿ **Accessibility Improvements**
 - **ARIA labels** and semantic HTML structure
@@ -37,10 +37,10 @@ The site is live at: https://andreamagazzini.github.io/cooperativa-agricola-dei-
 - **Responsive images** with proper sizing
 
 ### ⚡ **Performance Optimizations**
-- **Lazy loading** for images and components
-- **Image optimization** utilities
-- **Bundle size optimization** (removed jQuery dependency)
-- **Performance monitoring** hooks
+- **Next.js Image optimization** built-in
+- **Automatic code splitting**
+- **Server-side rendering** for better SEO
+- **API routes** for Airtable integration
 - **Efficient re-renders** with proper React patterns
 
 ### 🎭 **Modern Features**
@@ -52,29 +52,33 @@ The site is live at: https://andreamagazzini.github.io/cooperativa-agricola-dei-
 
 ## 🛠 **Technology Stack**
 
-- **React 18** with TypeScript
-- **Vite** for fast development and building
+- **Next.js 14** with TypeScript
+- **React 18** with App Router
 - **Tailwind CSS** for styling
 - **Framer Motion** for animations
 - **Headless UI** for accessible components
-- **React Router** for navigation
+- **Airtable** for content management (optional)
 
 ## 📁 **Project Structure**
 
 ```
 src/
-├── components/
-│   ├── ui/                 # Reusable UI components
-│   ├── animations/         # Animation components
-│   ├── ErrorBoundary.tsx   # Error handling
-│   ├── LazyImage.tsx       # Optimized image loading
-│   ├── Touchable.tsx       # Mobile touch interactions
-│   └── SkipLink.tsx        # Accessibility skip link
-├── hooks/                  # Custom React hooks
-├── types/                  # TypeScript type definitions
-├── constants/              # Application constants
-├── utils/                  # Utility functions
-└── routes/                 # Page components
+├── app/                    # Next.js App Router pages
+│   ├── layout.tsx         # Root layout
+│   ├── page.tsx           # Home page
+│   ├── products/          # Products pages
+│   ├── story/             # Story page
+│   ├── contacts/          # Contacts page
+│   └── api/               # API routes
+│       ├── products/      # Products API
+│       └── images/         # Images API
+├── components/            # React components
+│   ├── ui/                # Reusable UI components
+│   └── animations/        # Animation components
+├── hooks/                 # Custom React hooks
+├── types/                 # TypeScript type definitions
+├── constants/            # Application constants
+└── utils/                # Utility functions
 ```
 
 ## 🎯 **Key Features**
@@ -90,6 +94,7 @@ src/
 - Detailed product descriptions
 - Nutritional information cards
 - Usage suggestions
+- Can be managed via Airtable
 
 ### **Contact Page**
 - Interactive contact form with validation
@@ -109,6 +114,7 @@ src/
 - pnpm (recommended) or npm
 
 ### **Installation**
+
 ```bash
 # Clone the repository
 git clone <repository-url>
@@ -117,21 +123,64 @@ cd cooperativa-agricola-dei-colli
 # Install dependencies
 pnpm install
 
+# Copy environment variables (if using Airtable)
+cp .env.local.example .env.local
+# Edit .env.local with your Airtable credentials
+
 # Start development server
 pnpm dev
 
 # Build for production
 pnpm build
 
-# Preview production build
-pnpm preview
+# Start production server
+pnpm start
 ```
 
 ### **Available Scripts**
-- `pnpm dev` - Start development server
+- `pnpm dev` - Start development server (http://localhost:3000)
 - `pnpm build` - Build for production
-- `pnpm preview` - Preview production build
+- `pnpm start` - Start production server
 - `pnpm lint` - Run ESLint
+
+## 🚀 **Deployment to Vercel**
+
+### **Automatic Deployment**
+
+1. **Push to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Convert to Next.js"
+   git push origin main
+   ```
+
+2. **Import to Vercel:**
+   - Go to https://vercel.com
+   - Click "New Project"
+   - Import your GitHub repository
+   - Vercel will auto-detect Next.js
+
+3. **Add Environment Variables:**
+   - In Vercel dashboard → Settings → Environment Variables
+   - Add:
+     - `AIRTABLE_API_KEY`
+     - `AIRTABLE_BASE_ID`
+     - `AIRTABLE_PRODUCTS_TABLE`
+     - `AIRTABLE_IMAGES_TABLE`
+
+4. **Deploy!**
+   - Click "Deploy"
+   - Your site will be live in minutes
+
+### **Manual Deployment**
+
+```bash
+# Build the project
+pnpm build
+
+# The .next folder contains the production build
+# Deploy this to your hosting provider
+```
 
 ## 📱 **Responsive Design**
 
@@ -151,11 +200,11 @@ The website is fully responsive with breakpoints:
 
 ## 🚀 **Performance**
 
-- **Lighthouse Score**: 90+ across all metrics
-- **Lazy loading** for images and components
-- **Optimized bundle size** with tree shaking
-- **Efficient animations** with hardware acceleration
-- **Minimal JavaScript** footprint
+- **Next.js optimizations** built-in
+- **Image optimization** with next/image
+- **Automatic code splitting**
+- **Server-side rendering** for SEO
+- **API route caching** for Airtable data
 
 ## 🎨 **Design System**
 
@@ -174,14 +223,32 @@ The website is fully responsive with breakpoints:
 - **Responsive margins** and padding
 - **Container max-widths** for readability
 
+## 📊 **CMS Integration (Airtable)**
+
+The site supports Airtable integration for content management:
+
+1. **Set up Airtable:**
+   - Create a base with Products and Images tables
+   - Add required fields (Name, Description, Image, Published, etc.)
+
+2. **Configure Environment Variables:**
+   - Add credentials to `.env.local` (development)
+   - Add to Vercel dashboard (production)
+
+3. **API Routes:**
+   - `/api/products` - Fetch products from Airtable
+   - `/api/images` - Fetch images from Airtable
+
+See `docs/CMS_COMPARISON.md` for CMS options and `docs/AIRTABLE_INTEGRATION.md` for setup guide.
+
 ## 🔮 **Future Enhancements**
 
-- [ ] **CMS integration** for content management
+- [x] **Next.js migration** ✅
+- [x] **CMS integration** (Airtable) ✅
 - [ ] **E-commerce functionality** for product sales
 - [ ] **Multi-language support** (Italian/English)
 - [ ] **Blog section** for news and updates
 - [ ] **Product search** and filtering
-- [ ] **User accounts** and order tracking
 - [ ] **Analytics integration** for insights
 - [ ] **PWA features** for offline access
 

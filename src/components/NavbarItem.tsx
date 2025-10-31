@@ -1,29 +1,34 @@
+'use client'
+
 import { Menu, Transition } from '@headlessui/react'
 import { FC, Fragment } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link } from '@/i18n/routing'
 
 interface Props {
   children: string
   items?: { label: string, url: string }[]
-  onClick?: () => void
+  href?: string
   className?: string
+  isScrolled?: boolean
 }
 
-const NavbarItem: FC<Props> = ({ children, items, onClick, className = '' }) => {
-  const navigate = useNavigate()
-
+const NavbarItem: FC<Props> = ({ children, items, href, className = '', isScrolled = false }) => {
+  const textColor = isScrolled ? 'text-primary-800' : 'text-white'
+  const hoverBg = isScrolled ? 'hover:bg-primary-50' : 'hover:bg-white/20'
+  const focusRing = isScrolled ? 'focus-visible:ring-primary-500' : 'focus-visible:ring-white/75'
+  
   if (items) {
     return (
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button 
-            className={`inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 transition-colors duration-200 ${className}`}
+            className={`inline-flex w-full justify-center rounded-md px-4 py-2 text-sm font-medium ${textColor} ${hoverBg} focus:outline-none focus-visible:ring-2 ${focusRing} transition-colors duration-200 ${className}`}
             aria-expanded="false"
             aria-haspopup="true"
           >
             {children}
             <svg
-              className="ml-2 -mr-1 h-5 w-5 text-white"
+              className={`ml-2 -mr-1 h-5 w-5 ${textColor}`}
               viewBox="0 0 20 20"
               fill="currentColor"
               aria-hidden="true"
@@ -51,14 +56,14 @@ const NavbarItem: FC<Props> = ({ children, items, onClick, className = '' }) => 
               {items.map(({ label, url }) => (
                 <Menu.Item key={label}>
                   {({ active }) => (
-                    <button
+                    <Link
+                      href={url}
                       className={`${
                         active ? 'bg-primary-500 text-white' : 'text-neutral-900'
-                      } group flex w-full items-center rounded-md px-2 py-2 text-sm transition-colors duration-200 hover:bg-primary-50`}
-                      onClick={() => navigate(url)}
+                      } group flex w-full items-center rounded-md px-2 py-2 text-sm transition-colors duration-200 hover:bg-primary-50 block`}
                     >
                       {label}
-                    </button>
+                    </Link>
                   )}
                 </Menu.Item>
               ))}
@@ -70,12 +75,12 @@ const NavbarItem: FC<Props> = ({ children, items, onClick, className = '' }) => 
   }
 
   return (
-    <button
-      onClick={onClick}
-      className={`text-sm font-medium text-white hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75 transition-colors duration-200 ${className}`}
+    <Link
+      href={href || '#'}
+      className={`text-sm font-medium ${textColor} ${hoverBg} focus:outline-none focus-visible:ring-2 ${focusRing} transition-colors duration-200 ${className}`}
     >
       {children}
-    </button>
+    </Link>
   )
 }
 

@@ -1,13 +1,16 @@
-import { PRODUCTS } from '@/constants/products'
+'use client'
+
 import NavbarItem from './NavbarItem'
-import { useNavigate } from 'react-router-dom'
-import { getContactsUrl, getRootUrl, getStoryUrl } from '@/router'
 import MobileNavbar from './MobileNavbar'
+import LanguageSwitcher from './LanguageSwitcher'
 import { useScroll } from '@/hooks'
+import { useTranslations, useLocale } from 'next-intl'
+import { Link } from '@/i18n/routing'
 
 const Navbar = () => {
-  const navigate = useNavigate()
   const { isScrolled } = useScroll()
+  const t = useTranslations('nav')
+  const locale = useLocale()
 
   return (
     <>
@@ -25,41 +28,50 @@ const Navbar = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo/Brand */}
             <div className="flex-shrink-0">
-              <button
-                onClick={() => navigate(getRootUrl())}
-                className="text-xl font-bold text-gradient hover:scale-105 transition-transform duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg px-2 py-1"
+              <Link
+                href="/"
+                className={`text-xl font-bold hover:scale-105 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 rounded-lg px-2 py-1 inline-block ${
+                  isScrolled 
+                    ? 'text-primary-800' 
+                    : 'text-white'
+                }`}
                 aria-label="Go to homepage"
               >
                 COOPERATIVA AGRICOLA DEI COLLI
-              </button>
+              </Link>
             </div>
 
             {/* Navigation Items */}
-            <div className="hidden lg:flex items-center space-x-1">
+            <div className="hidden lg:flex items-center space-x-4">
               <NavbarItem 
-                onClick={() => navigate(getRootUrl())}
-                className="px-4 py-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                href="/"
+                className="px-4 py-2 rounded-lg transition-colors duration-200"
+                isScrolled={isScrolled}
               >
-                HOME
+                {t('home')}
               </NavbarItem>
               <NavbarItem 
-                items={PRODUCTS}
-                className="px-4 py-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                href="/products"
+                className="px-4 py-2 rounded-lg transition-colors duration-200"
+                isScrolled={isScrolled}
               >
-                PRODOTTI
+                {t('products')}
               </NavbarItem>
               <NavbarItem 
-                onClick={() => navigate(getStoryUrl())}
-                className="px-4 py-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                href="/story"
+                className="px-4 py-2 rounded-lg transition-colors duration-200"
+                isScrolled={isScrolled}
               >
-                CHI SIAMO
+                {t('story')}
               </NavbarItem>
               <NavbarItem 
-                onClick={() => navigate(getContactsUrl())}
-                className="px-4 py-2 rounded-lg hover:bg-white/20 transition-colors duration-200"
+                href="/contacts"
+                className="px-4 py-2 rounded-lg transition-colors duration-200"
+                isScrolled={isScrolled}
               >
-                CONTATTI
+                {t('contacts')}
               </NavbarItem>
+              <LanguageSwitcher isScrolled={isScrolled} />
             </div>
           </div>
         </div>
