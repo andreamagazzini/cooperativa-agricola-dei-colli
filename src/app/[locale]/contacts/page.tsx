@@ -46,7 +46,7 @@ export default function ContactsPage() {
       email: '',
       message: ''
     },
-    onSubmit: async (values) => {
+    onSubmit: async (_values) => {
       // TODO: Connect to API route
       await new Promise(resolve => setTimeout(resolve, 1000))
       alert(t('formSuccess'))
